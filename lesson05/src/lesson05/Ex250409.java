@@ -60,6 +60,11 @@ public class Ex250409 {
 //		int number = 1234; 
 //		int result = (number);
 //		System.out.println(result);
+
+		//test 
+//		int number = 1234; 
+//		int result = (number);
+//		System.out.println(result);
 		
 		
 	}
