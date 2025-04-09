@@ -102,11 +102,11 @@ public class Special {
 //				(단, 소수점 처리는 하지 않아도 됨)
 				//System.out.println((80 + 90 + 70) / 3);
 		
-				int a = 80;
-				int b = 90;
-				int c = 70;
-				System.out.println((a + b + c) / 3);
-				
+//				int a = 80;
+//				int b = 90;
+//				int c = 70;
+//				System.out.println((a + b + c) / 3);
+//				
 				
 //				[문제 8] 조건 판별식
 //				다음 조건을 만족하면 true를 출력하는 코드를 작성하시오.
@@ -167,7 +167,10 @@ public class Special {
 				boolean canEnter = (age >= 18 && hasTicket == true) && isVIP == false;
 				System.out.println(canEnter);
 				
-				 
-		
+
+				
 	}
 }
+
+
+
