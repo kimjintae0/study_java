@@ -1,5 +1,8 @@
 package lesson05;
 
+import java.util.Scanner;
+
+////
 public class Ex250409 {
 	public static void main(String[] args) {
 		// 1. 로그인 인증
@@ -7,27 +10,27 @@ public class Ex250409 {
 		// 그 아이디가 admin, 비밀번호가 1234일때 로그인 성공
 		// 아이디가 admin 비밀번호가 틀렸을때 로그인 실패 > 잘못된 비밀번호
 		// 아이디가 admin이 아니면 없는 계정 메세지 출력
-//		Scanner scanner = new Scanner(System.in);
-//		String id = "";
-//		String pw = "";
-//		System.out.print("아이디를 입력하세요 > ");
-//		id = scanner.nextLine();
-//		System.out.print("입력한 아이디 : " + id);
-//		
-//		System.out.print("비밀번호를 입력하세요 > ");
-//		id = scanner.nextLine();
-//		System.out.print("입력한 아이디 : " + id);
-//		
-//		// .eqauls()
-//		if(id.equals("admin")) { // 없는 계정
-//			System.out.println("존재 하지 않는 계정");
-//		}
-//		// 있는 계정
-//		else if(pw.equals("1234")) { // 로그인 성공
-//			System.out.println("로그인 성공");
-//		}
-//		else {
-//			System.out.println("비밀 번호 틀림");
+		Scanner scanner = new Scanner(System.in);
+		String id = "";
+		String pw = "";
+		System.out.print("아이디를 입력하세요 > ");
+		id = scanner.nextLine();
+		System.out.print("입력한 아이디 : " + id);
+		
+		System.out.print("비밀번호를 입력하세요 > ");
+		id = scanner.nextLine();
+		System.out.print("입력한 아이디 : " + id);
+		
+		// .eqauls()
+		if(id.equals("admin")) { // 없는 계정
+			System.out.println("존재 하지 않는 계정");
+		}
+		// 있는 계정
+		else if(pw.equals("1234")) { // 로그인 성공
+			System.out.println("로그인 성공");
+		}
+		else {
+			System.out.println("비밀 번호 틀림");
 //		}
 		// 2. 숫자 하나를 입력받아서
 		// 3의 배수 그리고 짝수 여부를 동시판별
@@ -68,7 +71,7 @@ public class Ex250409 {
 //		}
 				
 		// 3. 월(month)을 입력받아서 계절을 출력
-		
+//		Scanner scanner = new Scanner(System.in) 
 //		input = scanner.nextInt();
 //		switch (input) {
 //		case 3: case 4: case 5:
@@ -129,9 +132,9 @@ public class Ex250409 {
 		
 // 연습문제 5
 
-		int year = 2000 ;
-		boolean leapYear = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
-		System.out.println(leapYear);
+//		int year = 2000 ;
+//		boolean leapYear = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+//		System.out.println(leapYear);
 		
 //		// 윤년이면 true, 윤년이 아니면 false
 //		System.out.println(leapYear);
@@ -139,24 +142,37 @@ public class Ex250409 {
 
 // 연습문제 6
 		
-		int price = 187_000 ; // 187000 > 187_000 입력해도됨 가독성 좋아짐
-		int oman = price / 50_000;
-		int ilman = (price % 50_000) / 10_000;
-		int ochun = (price % 10_000) / 5_000;
-		int ilchun = (price % 5_000) / 1_000;
-		
-		
-		System.out.println("5만원권 : " +oman+"장");
-		System.out.println("1만원권 : " +ilman+"장");
-		System.out.println("5천원권 : " +ochun+"장");
-		System.out.println("1천원권 : " +ilchun+"장");
+//		int price = 187_000 ; // 187000 > 187_000 입력해도됨 가독성 좋아짐
+//		int oman = price / 50_000;
+//		int ilman = (price % 50_000) / 10_000;
+//		int ochun = (price % 10_000) / 5_000;
+//		int ilchun = (price % 5_000) / 1_000;
+//		
+//		
+//		System.out.println("5만원권 : " +oman+"장");
+//		System.out.println("1만원권 : " +ilman+"장");
+//		System.out.println("5천원권 : " +ochun+"장");
+//		System.out.println("1천원권 : " +ilchun+"장");
 		
 // 연습문제 7
 
-		int number = 1234;
-		int result = 1234 / 100 * 100;
-		result = number - number % 100;
-		System.out.println(result);
+//<<<<<<< HEAD
+//		int number = 1234;
+//		int result = 1234 / 100 * 100;
+//		result = number - number % 100;
+//		System.out.println(result);
 				
-	}
-}
+//=======
+////		int number = 1234; 
+////		int result = (number);
+////		System.out.println(result);
+//
+//		//test 
+////		int number = 1234; 
+////		int result = (number);
+////		System.out.println(result);
+//		
+//		
+//>>>>>>> eb93c1966465f90c078986b3e3c76984857373d6
+//	}
+//}

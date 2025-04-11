@@ -53,5 +53,12 @@ public class Ex250410 {
 //		System.out.println(count == 0 ? "소수" : "소수아님"); 
 		
 	
+		
+		
 	}
 }
+
+
+
+
+
