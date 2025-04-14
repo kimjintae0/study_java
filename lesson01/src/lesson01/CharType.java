@@ -1,5 +1,8 @@
 package lesson01;
 
+import java.io.PrintStream;
+import java.util.Arrays;
+
 public class CharType {
 	public static void main(String[] args) {
 		// 문자 65000개 가량
@@ -7,10 +10,12 @@ public class CharType {
 		
 		char 문자 = '가'; // 가 다음은 각 > 이런식으로 진행 
 		System.out.println(문자);
+		
 		int 정수화된문자 = 문자;
 		System.out.println(정수화된문자);
 		
 		String str = "가" + "나" + "다라마"; // 가나다라마
+		System.out.println(str);
 		
 		char a = 'A'; // 문자 변수 a = 대문자 A
 		// syso 입력 후 ctrl + space
