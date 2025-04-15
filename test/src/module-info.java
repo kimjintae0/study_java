@@ -4,5 +4,5 @@
 /**
  * 
  */
-module lesson07_2 {
+module test {
 }

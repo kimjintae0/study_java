@@ -4,7 +4,7 @@ public class SwitchEx {
 	public static void main(String[] args) {
 		// 요일 
 		// 0 : 일요일, 6 : 토요일
-		int day = -2;
+		int day = 0;
 		switch(day) {
 		case 0:
 			System.out.println("일요일");
