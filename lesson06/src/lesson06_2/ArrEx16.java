@@ -16,6 +16,7 @@ public class ArrEx16 {
 			System.out.println(arrInt[i]);
 		}
 		System.out.println(Arrays.toString(arrInt));
+		
 		// 향상된 for(Enhanced for)문을 이용한 출력
 		// 여기있는 number 값 변경 불가
 		// 값을 조회하는데 사용, 읽기 전용 / 기존 for문 보다 조금 더 간결하게 사용가능

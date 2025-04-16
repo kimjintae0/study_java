@@ -6,8 +6,8 @@ public class StudentService {
 	// {null,null,null,null,null,null,null,null,null,null}  > 이렇게 10개 들어있다고 생각
 	
 	// 25.04.16
-	// 1. 평균 계산 double type //  service 수정 및 삭제 구현
-	// 2. 수정 및 삭제 구현 / 이름도 바꾸도 학점도 과목도 바꿀수 있어야.. / 이름,국어,영어,수학 받아서 덮어쓰기
+	// 1. 평균 계산 double type 
+	// 2. service 수정 및 삭제 구현 / 이름도 바꾸도 학점도 과목도 바꿀수 있어야.. / 이름,국어,영어,수학 받아서 덮어쓰기
 	// 3. 배열의 길이를 넘는 추가 학생 등록시 배열 길이 늘리기 // Student[] students = new Student[10]; > Student[] students = new Student[2]; 이걸로 실행 시 터짐
 	
 	

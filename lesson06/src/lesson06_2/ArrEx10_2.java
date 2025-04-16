@@ -27,7 +27,7 @@ public class ArrEx10_2 {
 		};
 		
 		System.out.println("[첫번째]");
-		int count = 1;
+		int count = 0;
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
 				matrix[i][j] = count++;
