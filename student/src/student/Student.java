@@ -32,12 +32,18 @@ public class Student {
 		this.mat = mat;
 
 	}
+	
 	int total() {
 		return kor+eng+mat;
 	}
 	
 	double avg() {
-		return (kor+eng+mat) / 3; 
+		return total() / 3d;		// return (kor+eng+mat) / 3d; > d 붙여서 정수로 바꿔야함  
+		
+	}
+	
+	public String toString() {
+		return String.format("%5d %5s %5d %5d %5d %6.2f %5d", no, name, kor, eng, mat, avg(), total());
 		
 	}
 }

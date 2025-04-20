@@ -1,56 +1,213 @@
 package student;
 
+import java.util.Arrays;
+
 public class StudentService { 
-	Student[] students = new Student[10]; 
-	int count; // int count = 0; > 생략가능
-	// {null,null,null,null,null,null,null,null,null,null}  > 이렇게 10개 들어있다고 생각
+	// 25.04.17
+	// 1. 중복학번 학생 등록 방지
+	// 2. 점수당 평균값 출력 + 총평균(평균값의 평균 = total를 인원수로 나눔)
+	// 3. 석차 순 정렬(총점 고득점자부터 출력되어야함)
+	// 4. student 클래스의 toString(p.316 참고) 재정의 > 학생이 가진 toString을 재정의 = 편의성을 위해서
 	
-	// 25.04.16
-	// 1. 평균 계산 double type 
-	// 2. service 수정 및 삭제 구현 / 이름도 바꾸도 학점도 과목도 바꿀수 있어야.. / 이름,국어,영어,수학 받아서 덮어쓰기
-	// 3. 배열의 길이를 넘는 추가 학생 등록시 배열 길이 늘리기 // Student[] students = new Student[10]; > Student[] students = new Student[2]; 이걸로 실행 시 터짐
+	// 05.04.18
+	// 1. 모든 필드, 메서드, 생성자 > 접근제한자
+	// 2. 어떤 값을 입력하더라도 예외 처리 (프로그램 종료는 정상종료)
+	// 3. 점수값 입력의 범위 0~100 사이만 인정
+	// 4. 이름 입력은 한글만 인정, 2글자~4글자사이
+	// 5. 임시데이터의 점수값을 랜덤으로 배정(60~100)
+	
+	// 도형 과제 추가
+	// 삼각형, 3차원도형 추가 구현
+	
+	
+		Student[] students = new Student[10]; // {null,null,null,null,null,null,null,null,null,null}  > 이렇게 10개 들어있다고 생각
+		Student[] sortedStudents = new Student[students.length];
+			int count; // int count = 0; > 생략가능
+	{
+		students[count++] = new Student(1, "개똥이", 90, 80, 90);
+		students[count++] = new Student(2, "새똥이", 80, 80, 90);
+		students[count++] = new Student(3, "말똥이", 10, 80, 90);
+		students[count++] = new Student(4, "소똥이", 100, 100, 90);
+		
+		sortedStudents = students.clone();
+		rank();
+		
+	}
+
+	
+		// 입력 : 학번
+		// 출력 : 학생
+		Student findBy(int no) {
+			Student student = null;
+			for(int i = 0 ; i < count ; i++) {
+				if(students[i].no == no) {
+					student = students[i];
+					break;
+				}
+			}
+			return student;
+		}
 	
 	
 	// 등록
-	void register() {
-		System.out.println("등록 가능"); 
+		void register() {
+			System.out.println("등록 가능"); 
 		// > 등록기능 구현 ui쪽 x	 // 학생 인스턴스를 생성하고 
 		// 학생 생성
 		// 학번, 이름, 국어, 영어 ,수학
-		int no = StudentUtils.nextInt("학번 > ");
-		String name = StudentUtils.nextLine("이름 > ");
-		int kor = StudentUtils.nextInt("국어 > ");
-		int eng = StudentUtils.nextInt("영어 > ");
-		int mat = StudentUtils.nextInt("수학 > ");
-		students[count++] = new Student(no, name, kor, eng, mat);
-	}
+			int no = StudentUtils.nextInt("학번 > ");
+		
+			Student s = findBy(no);
+		
+			if(s != null) {
+			System.out.println("중복된 학번이 존재합니다");
+			return;
+			}
+		
+			//int no = StudentUtils.nextInt("학번 > ");
+			String name = StudentUtils.nextLine("이름 > ");
+			int kor = StudentUtils.nextInt("국어 > ");
+			int eng = StudentUtils.nextInt("영어 > ");
+			int mat = StudentUtils.nextInt("수학 > ");
+			if(students.length == count) {
+				students = Arrays.copyOf(students, students.length * 2);
+			}
+			students[count++] = new Student(no, name, kor, eng, mat);
+			sortedStudents = Arrays.copyOf(students, students.length);
+			rank();
+		}
 	
 	// 조회 // > 반복해야됨
-	void read() {
-		System.out.println("조회 가능");
-		for (int i = 0 ; i < count ; i ++) {
-			System.out.println(students[i].no + ", " + students[i].name + ", " + students[i].total()+ ", " + students[i].avg());
+		void read() {
+			System.out.println("조회 가능");
+			print(students);
+		
+//		for (int i = 0 ; i < count ; i ++) {
+//			System.out.println(students[i].no + ", " + students[i].name + ", " + students[i].total()+ ", " + students[i].avg());
+		}
+		
+		void readOrder() {
+			System.out.println("석차순 조회 기능");
+			print(sortedStudents);
+		}
+		
+		void print(Student[] stu) {
+			for(int i = 0 ; i < count ; i++) {
+				System.out.println(stu[i]);
+			}
 		}
 		
 //		 double avg =  (kor += eng += mat);
 //		for (int i = 0 ; i < count ; i ++) {
 //			System.out.println(students[i].no + ", " + students[i].name + ", " + students[i].avg());
 //		}
-		
-	}
+
 	
-	// 수정
-	void modify() {
-		System.out.println("수정 가능");
-		
-		
-	}
+	// 수정		 
+		void modify() {
+			System.out.println("수정 기능");
+			// 학생들 배열에서 입력받은 학번과 일치하는 학생 // 수정은 있을때만 등록은 없을때만..
+			int no = StudentUtils.nextInt("수정할 학생의 학번 > ");
+			Student s = null;
+			for (int i = 0; i < students.length; i++) {
+				if(students[i].no == no) {
+					s = students[i];
+					break;
+				}
+			}
+			s.name = StudentUtils.nextLine("이름 > ");
+			s.kor = StudentUtils.nextInt("국어 > ");
+			s.eng = StudentUtils.nextInt("영어 > ");
+			s.mat = StudentUtils.nextInt("수학 > ");
+			sortedStudents = Arrays.copyOf(students, students.length);
+			rank();	
+		}
 	
-	// 삭제
+	// 삭제   // arraycopy, 
 	void remove() {
 		System.out.println("삭제 가능");
+		int no = StudentUtils.nextInt("삭제할 학생의 학번 > ");
+		Student s = findBy(no);
+		if(s == null) {
+			System.out.println("입력된 학번이 존재하지 않습니다");
+			return;
+		}
+		
+		for (int i = 0; i < count ; i++) {
+			if(students[i].no == no) {
+				System.arraycopy(students, i+1, students, i, count-- - 1 - i);
+				//count--;
+				break;
+			}
+		}
+		sortedStudents = Arrays.copyOf(students, students.length);
+		rank();
+	}
+	
+	void allAvg() {
+		// 국어, 영어, 수학, 전체평균
+		double avgKor = 0;
+		double avgEng = 0;
+		double avgMat = 0;
+		double avgAll = 0;
+		
+		// count
+		
+		for(int i = 0 ; i < count ; i++) {
+			avgKor += students[i].kor; 
+			avgEng += students[i].eng; 
+			avgMat += students[i].mat; 
+		}
+		avgKor /= (double)count;
+		avgEng /= (double)count;
+		avgMat /= (double)count;
+		
+		avgAll = (avgKor + avgEng + avgMat) / 3; 
+		
+		System.out.println(count + "명의 학생 평균");
+		System.out.println("국어 평균 " + avgKor);
+		System.out.println("영어 평균 " + avgEng);
+		System.out.println("수학 평균 " + avgMat);
+		System.out.println("전체 평균" + avgAll);
 		
 	}
+	
+		void rank() {
+		
+				for(int i = 0 ; i < count - 1; i++ ) {
+					int idx = i;
+					for(int j = 1 + i ; j < count ; j++) {
+						if(sortedStudents[idx].total() < sortedStudents[j].total()) {
+							idx = j;
+						}
+					}
+					Student tmp = sortedStudents[i];
+					sortedStudents[i] = sortedStudents[idx];
+					sortedStudents[idx] = tmp;
+				}
+	
+//	public static void main(String[] args) {
+//		int[] arr = {1,2,3,4,5};
+//		int idx = 0;
+//		System.arraycopy(arr, idx+1, arr, idx, arr.length - 1 - idx);
+//		System.out.println(Arrays.toString(arr));
+	}
+	
 }
+
+
+
+// 25.04.16
+// 1. 평균 계산 double type 
+// 2. service 수정 및 삭제 구현 / 이름도 바꾸도 학점도 과목도 바꿀수 있어야.. / 이름,국어,영어,수학 받아서 덮어쓰기
+// 3. 배열의 길이를 넘는 추가 학생 등록시 배열 길이 늘리기 // Student[] students = new Student[10]; > Student[] students = new Student[2]; 이걸로 실행 시 터짐
+
+
+
+
+
+
+
+
 
 
