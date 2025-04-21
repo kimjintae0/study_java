@@ -1,5 +1,6 @@
 package lesson05;
 
+
 public class DoWhileEx {
 	public static void main(String[] args) {
 		
