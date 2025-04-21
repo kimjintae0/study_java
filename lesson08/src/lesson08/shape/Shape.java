@@ -1,12 +1,16 @@
 package lesson08.shape;
 
-public class Shape {
+public abstract class Shape {
 
-	public double circum() {
-	return 0;
+//	public abstract double circum();
+	public abstract double area();
+	
+	public String tostriString() {
+		return "넓이 : " + area();
+	}
 }
-	public double area() {
-	return 0;
+	
+	
 	
 //	public abstract class Shape {
 //		public abstract double circum();
@@ -27,5 +31,4 @@ public class Shape {
 //	public double area() {
 //		return 0;
 		
-	}
-}
+
