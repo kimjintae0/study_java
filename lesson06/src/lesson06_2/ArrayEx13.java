@@ -20,7 +20,7 @@ public class ArrayEx13 {
 //		
 //		// 배열의 참조값 복사
 //		arr = tmp;
-//		System.out.println(Arrays.toString(arr));
+		System.out.println(Arrays.toString(arr));
 //		
 //		// for문을 이용한 복사, arraycopy를 이용한 복사는 복사될 대상을 미리 생성
 //		
