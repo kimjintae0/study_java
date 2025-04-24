@@ -2,10 +2,13 @@ package student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 
 public class StudentService { 
-//	1. 학생 예제 내의 정렬을 List의 sort로 구현, Comparator 사용
+//	1. 학생 예제 내의 정렬을 List의 sort로 구현, Comparator 사용 
 //	2. Map을 사용한 문자 빈도수 계산
 	
 	
@@ -14,7 +17,8 @@ public class StudentService {
 	
 			
 	{
-		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore())); 
+//		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
+		students.add(Student.builder().no(1).name("개똥이").kor(randomScore()).eng(randomScore()).mat(randomScore()).build());
 		students.add(new Student(2, "새똥이", randomScore(), randomScore() ,randomScore()));
 		students.add(new Student(3, "말똥이", randomScore(), randomScore() ,randomScore()));
 		students.add(new Student(4, "소똥이", randomScore(), randomScore() ,randomScore()));
@@ -23,6 +27,15 @@ public class StudentService {
 		rank();
 		
 	}
+	
+	private static StudentService studentService = new StudentService();
+	private StudentService() {
+		
+	}
+	public static StudentService getInstance() {
+		return null;
+	}
+	
 	public int randomScore() {
 		return (int)(Math.random() * 41 + 60);
 	}
@@ -182,26 +195,24 @@ public class StudentService {
 	}
 	
 		public void rank() {
-		
-				for(int i = 0 ; i <  sortedStudents.size() - 1; i++ ) {
-					int idx = i;
-					for(int j = 1 + i ; j < students.size() ; j++) {
-						if(sortedStudents.get(idx).total() < sortedStudents.get(j).total()) {
-							idx = j;
-						}
-					}
-					Student tmp = sortedStudents.get(i);
-					sortedStudents.set(i, sortedStudents.get(idx));
-					sortedStudents.set(idx, tmp);
-				}
-	
+//			// 1. list.sort()
+			
+			
+//			// 2. Treeset()
+			
+			
+//			// 3. Collections
+			Collections.sort(sortedStudents, (o1, o2) -> o2.total() - o1.total());
+
+			
+			
+			
 //	public static void main(String[] args) {
 //		int[] arr = {1,2,3,4,5};
 //		int idx = 0;
 //		System.arraycopy(arr, idx+1, arr, idx, arr.length - 1 - idx);
 //		System.out.println(Arrays.toString(arr));
 	}
-	
 }
 
 
@@ -228,8 +239,12 @@ public class StudentService {
 
 // 도형 과제 추가
 // 삼각형, 3차원도형 추가 구현
+
 // 25.04.22
 // 1. 학생예제의 배열 > 리스트로 교체
 // 2. 이름 유효성을 정규표현식으로 교체
+
+
+
 
 

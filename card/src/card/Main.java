@@ -29,3 +29,6 @@ public class Main {
 		System.out.println("deck의 남은 카드 갯수 : " + deck.cards.size());
 	}
 }
+
+
+

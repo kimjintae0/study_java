@@ -18,7 +18,7 @@ public class Minmax {
 			}
 		}
 		System.out.println("최대값 :: " + max);
-		System.out.println("최대값 :: " + min);
+		System.out.println("최소값 :: " + min);
 		// 합계, 평균
 	//	for (int i)
 	//	int[] arr = 
