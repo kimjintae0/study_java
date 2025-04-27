@@ -11,7 +11,7 @@ public class ArrEx1 {
 	  //int[] arr = new int[]{10, 20, 30, 50};
 		System.out.println(i);
 		
-		// 배열의 접근 // 배열의 값에 점근 >> index
+		// 배열의 접근 // 배열의 값에 접근 >> index
 		//System.out.println(arr);
 //		System.out.println(arr[0]);
 //		System.out.println(arr[1]);

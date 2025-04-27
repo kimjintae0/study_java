@@ -2,7 +2,7 @@ package student;
 
 public class StudentMain {
 	public static void main(String[] args) {
-		StudentService service = StudentService.getInstance();
+		StudentService service = new StudentService();
 		System.out.println("================학생 점수 관리 프로그램==============");
 		for(;;) {
 			try {

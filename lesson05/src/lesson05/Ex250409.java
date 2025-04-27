@@ -218,35 +218,6 @@
 ////		int result = 1234 / 100 * 100;
 ////		result = number - number % 100;
 ////		System.out.println(result);
-//<<<<<<< Updated upstream
-//				
-////=======
-//////		int number = 1234; 
-//////		int result = (number);
-//////		System.out.println(result);
-////
-////		//test 
-//////		int number = 1234; 
-//////		int result = (number);
-//////		System.out.println(result);
-////		
-////		
-////>>>>>>> eb93c1966465f90c078986b3e3c76984857373d6
-////	}
-////}
-//=======
-//
-//		
-//<<<<<<< HEAD
-////		
-////>>>>>>> eb93c1966465f90c078986b3e3c76984857373d6
-//	}
-//}
-//=======
-////	}
-////}
-////>>>>>>> Stashed changes
-//>>>>>>> bb0a083816c7ceb1ece60011392c62bfd76d0c14
-package lesson05;
+
 
 

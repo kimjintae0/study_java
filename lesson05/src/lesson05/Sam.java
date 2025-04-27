@@ -9,7 +9,6 @@ public class Sam {
 			//박수 횟수 반복
 			do {
 				if(tmp % 10 % 3 == 0 && tmp % 10 != 0) {
-					count++;
 				}
 			}while((tmp /= 10) != 0);
 			

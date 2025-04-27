@@ -8,7 +8,7 @@ public class Special {
 		// B : 제수
 		// C : 몫
 		// NaN : Not a Number
-		// 
+		
 		
 //		System.out.println(Double.POSITIVE_INFINITY); 
 //		System.out.println("실행전");
@@ -24,7 +24,7 @@ public class Special {
 //		사탕 나눠주기
 //		한 사람이 사탕 72개를 가지고 있다. 이 사탕을 6명에게 똑같이 나눠주려고 한다.
 //		각 사람이 받는 사탕 수를 계산하여 출력하시오.
-		//System.out.println(72 / 6);
+//		System.out.println(72 / 6);
 		
 //		int candy = 72;
 //		int hum = 6;
@@ -141,7 +141,7 @@ public class Special {
 
 				int num = 10;
 				System.out.println((num * 3 + 5) / 3);
-				
+			
 		
 //				[어려움 - 1문제]
 //				[문제 10] 입장 심사 시스템 구성

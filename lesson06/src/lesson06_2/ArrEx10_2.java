@@ -6,7 +6,7 @@ public class ArrEx10_2 {
 	
 	public static void main(String[] args) {
 		//
-		int[][] matrix = new int[4][3]; // 앞에 있는[3]을 4로 바꾸면 
+		int[][] matrix = new int[3][3]; // 앞에 있는[3]을 4로 바꾸면 
 		
 		matrix[0][0] = 1;
 		matrix[0][1] = 2;
@@ -27,10 +27,9 @@ public class ArrEx10_2 {
 		};
 		
 		System.out.println("[첫번째]");
-		int count = 0;
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
-				matrix[i][j] = count++;
+				System.out.print(matrix[i][j]+" ");
 			}
 			System.out.println();
 		}
@@ -54,12 +53,6 @@ public class ArrEx10_2 {
 		System.out.println(matrix[0]);
 	}
 }
-
-
-
-
-
-
 
 
 

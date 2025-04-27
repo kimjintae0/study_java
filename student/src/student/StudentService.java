@@ -2,50 +2,34 @@ package student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
 
-public class StudentService { 
-//	1. 학생 예제 내의 정렬을 List의 sort로 구현, Comparator 사용 
-//	2. Map을 사용한 문자 빈도수 계산
+public class StudentService {
+	// 1. 학생예제의 배열 > 리스트로 교체
+	// 2. 이름 유효성을 정규표현식으로 교체
 	
-	
-	private List<Student> students = new ArrayList<Student>(); // {null,null,null,null,null,null,null,null,null,null}  > 이렇게 10개 들어있다고 생각
-	private	List<Student> sortedStudents = new ArrayList<Student>();
-	
-			
+	private List<Student> students = new ArrayList<Student>();
+	private List<Student> sortedStudents;
+
 	{
-//		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
-		students.add(Student.builder().no(1).name("개똥이").kor(randomScore()).eng(randomScore()).mat(randomScore()).build());
-		students.add(new Student(2, "새똥이", randomScore(), randomScore() ,randomScore()));
-		students.add(new Student(3, "말똥이", randomScore(), randomScore() ,randomScore()));
-		students.add(new Student(4, "소똥이", randomScore(), randomScore() ,randomScore()));
+		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(2, "새똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(3, "말똥이", randomScore(), randomScore(), randomScore()));
+		students.add(new Student(4, "소똥이", randomScore(), randomScore(), randomScore()));
 		
 		sortedStudents = new ArrayList<Student>(students);
 		rank();
-		
 	}
-	
-	private static StudentService studentService = new StudentService();
-	private StudentService() {
-		
-	}
-	public static StudentService getInstance() {
-		return null;
-	}
-	
 	public int randomScore() {
 		return (int)(Math.random() * 41 + 60);
 	}
-
 	
-		// 입력 : 학번
-		// 출력 : 학생
+	
+	// 입력 : 학번
+	// 출력 : 학생
 	public Student findBy(int no) {
 		Student student = null;
-		for(int i = 0 ; i < students.size()	; i++) {
+		for(int i = 0 ; i < students.size() ; i++) {
 			if(students.get(i).getNo() == no) {
 				student = students.get(i);
 				break;
@@ -53,7 +37,7 @@ public class StudentService {
 		}
 		return student;
 	}
-	
+
 	public int checkRange(String subject, int input, int start, int end) {
 		if(input < start || input > end) {
 			throw new IllegalArgumentException(subject + "값의 범위가 벗어났습니다. " + start + "~" + end + "사이의 입력을 해주세요");
@@ -67,92 +51,73 @@ public class StudentService {
 	public String inputName() {
 		String name = StudentUtils.nextLine("이름 > ");
 		if(!name.matches("[가-힣]{2,4}")) {
-			throw new IllegalArgumentException("이름은 2~4글자로 구성되어야합니다");
+			throw new IllegalArgumentException("이름은 2~4글자 한글로 구성되어야합니다");
 		}
 		return name;
 	}
-	
 	// 등록
-		public void register() {
-			System.out.println("등록 가능"); 
-		// > 등록기능 구현 ui쪽 x	 // 학생 인스턴스를 생성하고 
+	public void register() {
+		System.out.println("등록 기능");
 		// 학생 생성
-		// 학번, 이름, 국어, 영어 ,수학
-			int no = StudentUtils.nextInt("학번 > ");
+		// 학번, 이름, 국어, 영어, 수학
+		int no = StudentUtils.nextInt("학번 > ");
 		
-			Student s = findBy(no);
+		Student s = findBy(no);
 		
-			if(s != null) {
+		if(s != null) {
 			System.out.println("중복된 학번이 존재합니다");
-				return;
-			}
-		
-			//int no = StudentUtils.nextInt("학번 > ");
-			String name = inputName();
-			
-			int kor = StudentUtils.nextInt("국어 > ");
-			checkRange("국어", kor);
-			
-			
-			int eng = StudentUtils.nextInt("영어 > ");
-			checkRange("영어", eng);
-			
-			int mat = StudentUtils.nextInt("수학 > ");
-			checkRange("수학", mat);
-			Student s2 = new Student(no, name, kor, eng, mat);
-			students.add(s2);
-			sortedStudents.add(s2);
-			rank();
+			return;
 		}
+		
+		String name = inputName();
+		
+		int kor = StudentUtils.nextInt("국어 > ");
+		checkRange("국어", kor);
+		
+		int eng = StudentUtils.nextInt("영어 > ");
+		checkRange("영어", eng);
+		
+		int mat = StudentUtils.nextInt("수학 > ");
+		checkRange("수학", mat);
+		Student s2 = new Student(no, name, kor, eng, mat);
+		students.add(s2);
+		sortedStudents.add(s2);
+		rank();
+	}
+	// 조회
+	public void read() {
+		System.out.println("조회 기능");
+		print(students);
+	}
+	public void readOrder() {
+		System.out.println("석차순 조회 기능");
+		print(sortedStudents);
+	}
 	
-	// 조회 // > 반복해야됨
-		public void read() {
-			System.out.println("조회 가능");
-			print(students);
-		
-//		for (int i = 0 ; i < count ; i ++) {
-//			System.out.println(students[i].no + ", " + students[i].name + ", " + students[i].total()+ ", " + students[i].avg());
-		}
-		
-		public void readOrder() {
-			System.out.println("석차순 조회 기능");
-			print(sortedStudents);
-		}
-		
-		public void print(List<Student> stu) {
-			stu.forEach(s -> System.out.println(s)); // 람다식 컴슈머 개념 들어감
-			}
-		
-		
-//		 double avg =  (kor += eng += mat);
-//		for (int i = 0 ; i < count ; i ++) {
-//			System.out.println(students[i].no + ", " + students[i].name + ", " + students[i].avg());
-//		}
-
+	public void print(List<Student> stu) {
+		stu.forEach(s -> System.out.println(s));
+	}
 	
-	// 수정		 
-		public void modify() {
-			System.out.println("수정 기능");
-			// 학생들 배열에서 입력받은 학번과 일치하는 학생 // 수정은 있을때만 등록은 없을때만..
-			int no = StudentUtils.nextInt("수정할 학생의 학번 > ");
-			Student s = findBy(no);
-			
-				if(s == null) {
-					System.out.println("입력된 학번이 존재하지 않습니다.");
-					return;
-				}
-			
-			String name = inputName();
-			s.setName(name);
-			s.setKor(checkRange("국어", StudentUtils.nextInt("국어 > ")));
-			s.setEng(checkRange("영어", StudentUtils.nextInt("영어 > ")));
-			s.setMat(checkRange("수학", StudentUtils.nextInt("수학 > ")));
-			rank();	
+	// 수정
+	public void modify() {
+		System.out.println("수정 기능");
+		// 학생들 배열에서 입력받은 학번과 일치하는 학생
+		int no = StudentUtils.nextInt("수정할 학생의 학번 > ");
+		Student s = findBy(no);
+		if(s == null) {
+			System.out.println("입력된 학번이 존재하지 않습니다");
+			return;
 		}
-
-	// 삭제   // arraycopy, 
-		public void remove() {
-		System.out.println("삭제 가능");
+		String name = inputName();
+		s.setName(name);
+		s.setKor(checkRange("국어", StudentUtils.nextInt("국어 > ")));
+		s.setEng(checkRange("영어", StudentUtils.nextInt("영어 > ")));
+		s.setMat(checkRange("수학", StudentUtils.nextInt("수학 > ")));
+		rank();	
+	}
+	// 삭제
+	public void remove() {
+		System.out.println("삭제 기능");
 		int no = StudentUtils.nextInt("삭제할 학생의 학번 > ");
 		Student s = findBy(no);
 		if(s == null) {
@@ -161,13 +126,12 @@ public class StudentService {
 		}
 		students.remove(s);
 		sortedStudents.remove(s);
-//		rank(); // 생략 가능
 	}
 	
-		public void allAvg() {
+	public void allAvg() {
 		// 국어, 영어, 수학, 전체평균
-		students.stream().map(s->s.getKor());	
-			
+//		students.stream().map(s->s.getKor());
+		
 		double avgKor = 0;
 		double avgEng = 0;
 		double avgMat = 0;
@@ -194,15 +158,21 @@ public class StudentService {
 		
 	}
 	
-		public void rank() {
-//			// 1. list.sort()
-			
-			
-//			// 2. Treeset()
-			
-			
-//			// 3. Collections
-			Collections.sort(sortedStudents, (o1, o2) -> o2.total() - o1.total());
+	public void rank() {
+		for(int i = 0 ; i < sortedStudents.size() - 1; i++ ) {
+			int idx = i;
+			for(int j = 1 + i ; j < sortedStudents.size() ; j++) {
+				if(sortedStudents.get(idx).total() < sortedStudents.get(j).total()) {
+					idx = j;
+				}
+			}
+			Student tmp = sortedStudents.get(i);
+			sortedStudents.set(i, sortedStudents.get(idx));
+			sortedStudents.set(idx, tmp);
+		}		
+	}
+	
+}
 
 			
 			
@@ -212,8 +182,8 @@ public class StudentService {
 //		int idx = 0;
 //		System.arraycopy(arr, idx+1, arr, idx, arr.length - 1 - idx);
 //		System.out.println(Arrays.toString(arr));
-	}
-}
+	
+
 
 
 
