@@ -1,24 +1,53 @@
 package student;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class StudentService {
 	// 1. 학생예제의 배열 > 리스트로 교체
 	// 2. 이름 유효성을 정규표현식으로 교체
 	
-	private List<Student> students = new ArrayList<Student>();
+	private List<Student> students = new ArrayList<Student>();	// students 프로그램 실행 시 한번만 불러오면됨 
 	private List<Student> sortedStudents;
 
 	{
-		students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student(2, "새똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student(3, "말똥이", randomScore(), randomScore(), randomScore()));
-		students.add(new Student(4, "소똥이", randomScore(), randomScore(), randomScore()));
+		
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("data/student.ser"));	// 확장자명 상관없음
+			students = (List<Student>)ois.readObject();
+			ois.close();
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("파일을 불러 올수 없습니다. 임시 데이터셋으로 진행합니다.");
+			students.add(new Student(1, "개똥이", randomScore(), randomScore(), randomScore()));
+			students.add(new Student(2, "새똥이", randomScore(), randomScore(), randomScore()));	// 파일이 없을 경우 더미파일 실행 > 있으면 있는 파일 실행
+			students.add(new Student(3, "말똥이", randomScore(), randomScore(), randomScore()));
+			students.add(new Student(4, "소똥이", randomScore(), randomScore(), randomScore()));
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		sortedStudents = new ArrayList<Student>(students);
 		rank();
+	}
+	private static StudentService studentService = new StudentService();
+	private StudentService() {
+		
+	}
+	public static StudentService getInstance() {
+		return studentService;
 	}
 	public int randomScore() {
 		return (int)(Math.random() * 41 + 60);
@@ -83,6 +112,7 @@ public class StudentService {
 		students.add(s2);
 		sortedStudents.add(s2);
 		rank();
+		save();
 	}
 	// 조회
 	public void read() {
@@ -113,7 +143,8 @@ public class StudentService {
 		s.setKor(checkRange("국어", StudentUtils.nextInt("국어 > ")));
 		s.setEng(checkRange("영어", StudentUtils.nextInt("영어 > ")));
 		s.setMat(checkRange("수학", StudentUtils.nextInt("수학 > ")));
-		rank();	
+		rank();
+		save();
 	}
 	// 삭제
 	public void remove() {
@@ -126,6 +157,7 @@ public class StudentService {
 		}
 		students.remove(s);
 		sortedStudents.remove(s);
+		save();
 	}
 	
 	public void allAvg() {
@@ -158,21 +190,40 @@ public class StudentService {
 		
 	}
 	
-	public void rank() {
-		for(int i = 0 ; i < sortedStudents.size() - 1; i++ ) {
-			int idx = i;
-			for(int j = 1 + i ; j < sortedStudents.size() ; j++) {
-				if(sortedStudents.get(idx).total() < sortedStudents.get(j).total()) {
-					idx = j;
+//	public void rank() {
+//		for(int i = 0 ; i < sortedStudents.size() - 1; i++ ) {
+//			int idx = i;
+//			for(int j = 1 + i ; j < sortedStudents.size() ; j++) {
+//				if(sortedStudents.get(idx).total() < sortedStudents.get(j).total()) {
+//					idx = j;
+//				}
+//			}
+//			Student tmp = sortedStudents.get(i);
+//			sortedStudents.set(i, sortedStudents.get(idx));
+//			sortedStudents.set(idx, tmp);
+//		}
+		
+		public void rank() {
+			Collections.sort(sortedStudents, (o1, o2) -> o2.total() - o1.total());
+		}
+		
+		public void save() {
+			try {
+				File file = new File("data");
+				if(!file.exists()) {
+					file.mkdirs();
 				}
+				ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(file, "student.ser")));
+				oos.writeObject(students);
+				oos.close();
+			} catch (IOException e) {
+				System.out.println("파일 접근 권한이 없습니다.");
+				e.printStackTrace();
 			}
-			Student tmp = sortedStudents.get(i);
-			sortedStudents.set(i, sortedStudents.get(idx));
-			sortedStudents.set(idx, tmp);
-		}		
+		}
 	}
 	
-}
+
 
 			
 			

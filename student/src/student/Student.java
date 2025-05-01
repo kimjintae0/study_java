@@ -1,7 +1,9 @@
 package student;
 
+import java.io.Serializable;
+
 // Data class
-public class Student {
+public class Student implements Serializable{
 	// 클래스 내에 선언할 위치
 	// 1. 필드
 	// 2. 생성자
