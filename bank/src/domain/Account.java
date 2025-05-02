@@ -8,24 +8,20 @@ public class Account {
 	// 잔고
 	private long amount;
 	// 회원
-	private Customer customer;
+	private Customer customer;	
 	// 계좌비밀번호
 	private String pw;
 	// 한도액수
-	private long limat;
+	private long limit = 1_000_000;
 	// 개설일
-	private Date date;
+	private Date date = new Date();
 
 	public Account() {}
 		
-	public Account(int no, long amount, Customer customer, String pw, long limat, Date date) {
-		super();
+	public Account(int no, Customer customer, String pw) {
 		this.no = no;
-		this.amount = amount;
 		this.customer = customer;
 		this.pw = pw;
-		this.limat = limat;
-		this.date = date;
 	}
 
 
@@ -70,12 +66,12 @@ public class Account {
 
 
 	public long getLimat() {
-		return limat;
+		return limit;
 	}
 
 
 	public void setLimat(long limat) {
-		this.limat = limat;
+		this.limit = limit;
 	}
 
 
@@ -91,8 +87,8 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return String.format("Account [no=%s, amount=%s, customer=%s, pw=%s, limat=%s, date=%s]", no, amount, customer,
-				pw, limat, date);
+		return String.format("Account [no=%s, amount=%s, customer=%s, pw=%s, limit=%s, date=%s]", no, amount, customer,
+				pw, limit, date);
 	}
 }
 
