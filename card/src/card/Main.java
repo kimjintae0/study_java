@@ -5,7 +5,24 @@ import java.util.List;
 
 public class Main {
 	public static void main(String[] args) {
+//		Card card = new Card(Kind.CLOVER, 0);
+//		card.kind = Kind.SPADE;
+//		System.out.println(card);
+//		System.out.println(card.kind);
+//		
+//		Kind kind = Kind.DIAMOND;
+//		Kind kind2 = Kind.HEART;
+//		System.out.println(kind.ordinal());
+//		System.out.println(kind == kind2);
+//		System.out.println(kind.Score());
+//		System.out.println(kind.name());
+//		System.out.println(kind.getName());
+//		System.out.println(kind2.Score());
+		
 		play();
+//		String s = String.valueOf(1);
+//		String s2 = 1 +"";
+//		"1234".contains("45");
 	}
 	static void play() {
 		List<Player> players = new ArrayList<Player>();
